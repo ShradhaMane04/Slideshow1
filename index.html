@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slideshow</title>
+    <style>
+        .slide
+        {
+            height:400px;
+            width:600px;
+            object-fit:cover;
+            border-radius:10px;
+        }
+        .container
+        {
+            width:fit-content;
+            margin:50px auto;
+            position: relative;
+        }
+        .icon-action
+        {
+            height:80px;
+            position: absolute;
+            top:40%;
+            cursor: pointer;
+            transition:0.5s;
+        }
+        .icon-pre
+        {
+            left:0;
+        }
+        .icon-pre:hover
+        {
+            transform:scale(0.8) translateX(-10px);
+
+        }
+        .icon-next
+        {
+            right:0;
+        }
+        .icon-next:hover
+        {
+            transform:scale(0.8) translateX(10px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="ele.jpg" class="slide" id="slide"/>
+        <img src="backward-arrow.png" class="icon-action icon-pre" onclick="prev()"/>
+        <img src="fast-forward.png" class="icon-action icon-next" onclick="next()"/>
+    </div>
+    <script>
+        const images = ["ele.jpg","img1.jpg","img2.jpg","tiger.jpg","wolf.jpg","zebra.jpg"]
+        let index = 0;
+        const slide = document.getElementById('slide');
+        function next()
+        {
+            if(index < images.length - 1)
+            {
+                index++;
+            }
+            else
+            {
+                index = 0;
+            }
+            slide.src = images[index];
+        }
+
+        function prev()
+        {
+            if(index > 0)
+            {
+                index--;
+            }
+            else
+            {
+                index = images.length - 1;
+            }
+            slide.src = images[index];
+        }
+        setInterval(next,5000);
+    </script>
+</body>
+</html>
